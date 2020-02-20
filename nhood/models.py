@@ -52,6 +52,11 @@ class Business(models.Model):
         business=cls.objects.all()
         return business
         
+    @classmethod
+    def search_by_business(cls,name):
+        business=cls.objects.filter(businessname=name)
+        return business
+    
 class News(models.Model):
     newspic=models.ImageField(upload_to='images/',blank=True)
     title=models.CharField(max_length=30)
