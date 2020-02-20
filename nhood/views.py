@@ -28,4 +28,9 @@ def search_neighborhood(request):
         return render(request,'searchhood.html',{"message":message, "hoodsearched":searched_categories})
     else:
         message="You haven't searched for any category"
-        return render(request,"searchhood.html",{"message":message})        
+        return render(request,"searchhood.html",{"message":message})
+    
+@login_required(login_url='/accounts/login')
+def single_business(request,businessid):
+    single_business=Business.single_business(businessid)
+    return render(request,'singlebusiness.html',{'singlebusiness':single_business})        
