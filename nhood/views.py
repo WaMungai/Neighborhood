@@ -38,4 +38,23 @@ def single_business(request,businessid):
 @login_required(login_url='/accounts/login')
 def single_news(request,newsid):
     single_post=News.single_news(newsid)
-    return render(request,'singlenews.html',{"single_post":single_post})     
+    return render(request,'singlenews.html',{"single_post":single_post})
+
+@login_required(login_url='/accounts/login')
+def single_profile(request,userid):
+    profile=UserProfile.objects.all()
+    try:
+        singleprofile=UserProfile.single_profile(userid)
+        businessowned=Business.businessowner(userid)
+        newsbyuser=News.newsbyuser(userid)
+        
+    except UserProfile.DoesNotExist:
+        messages.info(request,'The user has not created a profile yet')
+        
+    except Business.DoesNotExist:
+        messages.info(request,'The user has no business posted')
+    
+    except News.DoesNotExist:
+        messages.infor(request,'User has not postedany alerts.')
+        
+    return render(request,'profile.html',{"profile":profile})           
