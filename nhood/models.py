@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from tinymce.models import HTMLField
  
 
 # Create your models here.
@@ -24,7 +25,7 @@ class Business(models.Model):
     pub_date=models.DateTimeField(auto_now_add=True)
     
 class News(models.Model):
-    newspic=model.ImageField(upload_to='images/',blank=True)
+    newspic=models.ImageField(upload_to='images/',blank=True)
     title=models.CharField(max_length=30)
     description=HTMLField()
     newsloaction=models.CharField(max_length=30)

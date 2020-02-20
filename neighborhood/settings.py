@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'tinymce',
     'bootstrap3',
     'nhood.apps.NhoodConfig',
     'django.contrib.admin',
