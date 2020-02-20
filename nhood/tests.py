@@ -20,3 +20,8 @@ class NeighborhoodTestClass(TestCase):
         self.newhood.deletehood()
         hoods=Neighborhood.objects.all()
         self.assertTrue(len(hoods)==0)
+        
+    def test_get_hood(self):
+        self.newhood.savehood()
+        firsthood=Neighborhood.get_hood()
+        self.assertTrue(firsthood is not None)

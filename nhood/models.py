@@ -18,6 +18,11 @@ class Neighborhood(models.Model):
         
     def deletehood(self):
         self.delete()
+        
+    @classmethod
+    def get_hood(cls):
+        hood=cls.objects.all()
+        return hood
     
 class UserProfile(models.Model):
     profile_pic=models.ImageField(upload_to='images/',blank=True)
