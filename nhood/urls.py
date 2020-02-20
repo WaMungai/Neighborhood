@@ -7,6 +7,7 @@ urlpatterns=[
     url('^$',views.home,name='home'),
     url(r'^searchbusiness/', views.search_neighborhood, name='search_neighborhood'),
     url(r'^searchlocation',views.search_business, name="search_business"),
+    url(r'business/(\d+)', views.single_business,name='singlebusiness'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
