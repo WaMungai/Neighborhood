@@ -33,4 +33,9 @@ def search_neighborhood(request):
 @login_required(login_url='/accounts/login')
 def single_business(request,businessid):
     single_business=Business.single_business(businessid)
-    return render(request,'singlebusiness.html',{'singlebusiness':single_business})        
+    return render(request,'singlebusiness.html',{'singlebusiness':single_business})   
+
+@login_required(login_url='/accounts/login')
+def single_news(request,newsid):
+    single_post=News.single_news(newsid)
+    return render(request,'singlenews.html',{"single_post":single_post})     
