@@ -14,3 +14,8 @@ class NeighborhoodTestClass(TestCase):
         self.newhood.savehood()
         hoods=Neighborhood.objects.all()
         self.assertTrue(len(hoods)>0)
+        
+    def test_delete_hood(self):
+        self.newhood.savehood()
+        hoods=Neighborhood.objects.all()
+        self.assertTrue(len(hoods)>0)
