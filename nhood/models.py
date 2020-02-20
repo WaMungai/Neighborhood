@@ -24,6 +24,11 @@ class Neighborhood(models.Model):
         hood=cls.objects.all()
         return hood
     
+    @classmethod
+    def search_by_name(cls,name):
+        hood=cls.objects.filter(hoodname=name)
+        return hood
+    
 class UserProfile(models.Model):
     profile_pic=models.ImageField(upload_to='images/',blank=True)
     editor=models.OneToOneField(User,on_delete=models.CASCADE)
