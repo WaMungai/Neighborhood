@@ -37,7 +37,21 @@ class Business(models.Model):
     area=models.ForeignKey(Neighborhood,on_delete=models.CASCADE,null=True)
     businessemail=models.CharField(max_length=30)
     pub_date=models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.businessname
     
+    def savebusiness(self):
+        self.save()
+        
+    def deletebusiness(self):
+        self.delete()
+        
+    @classmethod
+    def get_businesses(cls):
+        business=cls.objects.all()
+        return business
+        
 class News(models.Model):
     newspic=models.ImageField(upload_to='images/',blank=True)
     title=models.CharField(max_length=30)
