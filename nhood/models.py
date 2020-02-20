@@ -15,6 +15,9 @@ class Neighborhood(models.Model):
     
     def savehood(self):
         self.save()
+        
+    def deletehood(self):
+        self.delete()
     
 class UserProfile(models.Model):
     profile_pic=models.ImageField(upload_to='images/',blank=True)
