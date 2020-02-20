@@ -56,6 +56,20 @@ class News(models.Model):
     newspic=models.ImageField(upload_to='images/',blank=True)
     title=models.CharField(max_length=30)
     description=HTMLField()
-    newsloaction=models.CharField(max_length=30)
+    newslocation=models.CharField(max_length=30)
     editor=models.ForeignKey(User,on_delete=models.CASCADE)
     pub_date=models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.title
+    
+    def savenews(self):
+        self.save()
+        
+    def deletenews(self):
+        self.delete()
+        
+    @classmethod
+    def get_news(cls):
+        news=cls.objects.all()
+        return news

@@ -62,4 +62,27 @@ class BusinessTestClass(TestCase):
         firstbusiness=Business.get_businesses()
         self.assertTrue(firstbusiness is not None )
         
+class NewsTestClas(TestCase):
+    def setUp(self):
+        self.newuser=User(username='clover')
+        self.newuser.save()
+        self.news=News(title='mandem',newspic='img.jpg',description='blackisbeautiful',editor=self.newuser,newslocation='nairobi')
+    
+    def test_instance(self):
+        self.assertTrue(isinstance(self.news,News))
         
+    def test_save_news(self):
+        self.news.savenews()
+        allnews=News.objects.all()
+        self.assertTrue(len(allnews)>0)
+        
+    def test_delete_news(self):
+        self.news.savenews()
+        self.news.deletenews()
+        allnews=News.objects.all()
+        self.assertTrue(len(allnews)==0)
+        
+    def test_get_new(self):
+        self.news.savenews()
+        firstnews=News.get_news()
+        self.assertTrue(firstnews is not None)
