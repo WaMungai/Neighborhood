@@ -1,0 +1,19 @@
+{%block content%}
+<div class="container">
+    <div class="row">
+        {%if hoodsearched%}
+        <h1 style="color:black; text-align:left; margin-left:10%;">Found {{hoodsearched|length}} of searched category {{message}}</h1>
+        {%for hood in searched%}
+        <div class="row" style="margin-left:10%;">
+            <a href="#"><img src="{{hood.hoodpic.url}}" height="400px;" width="400px;" alt="Image" style="height:300px;">
+                <div class="p-4">
+                    <h2>Name:{{hood.hoodname}}</h2>
+                    <h2>Location:{{hood.hoodloaction}}</h2>
+                </div>
+        </div>
+        {%endfor%}
+    </div>
+</div>
+{%else%}
+<h1 style="color:black">Found 0 categories for the search term {{message}}</h1>
+{%endif%}
