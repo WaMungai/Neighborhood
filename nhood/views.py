@@ -17,3 +17,15 @@ def search_business(request):
     else:
         message ="You haven't searched for any categories"
         return render(request, 'searchbusiness.html',{"message":message,"businesssearched":search_categories})
+
+@login_required(login_url='/accounts/login/')
+def search_neighborhood(request):
+    if 'neighborhood' in request.GET and request .GET["neighborhood"]:
+        search_term = request.GET .get("neighborhood")
+        searched_categories= Neighborhood.search_by_name(search_term)
+        message =f"{search_term}"
+        
+        return render(request,'searchhood.html',{"message":message, "hoodsearched":searched_categories})
+    else:
+        message="You haven't searched for any category"
+        return render(request,"searchhood.html",{"message":message})        
