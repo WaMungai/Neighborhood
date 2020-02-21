@@ -58,4 +58,10 @@ def single_profile(request,userid):
     except News.DoesNotExist:
         messages.infor(request,'User has not postedany alerts.')
         
-    return render(request,'profile.html',{"profile":profile})           
+    return render(request,'profile.html',{"profile":profile}) 
+
+@login_required(login_url='/accounts/login/')
+def createprofile(request):
+    current_user=request.user 
+    if request.method =='POST':
+        form= UserProfileForm           
