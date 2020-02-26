@@ -17,7 +17,7 @@ class UserProfileForm(forms.ModelForm):
             'tags': forms.CheckboxSelectMultiple,
         }
         
-class BussinesForm(forms.ModelForm):
+class BusinessForm(forms.ModelForm):
     class Meta:
         model = Business
         exclude = ['editor', 'area']

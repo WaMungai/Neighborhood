@@ -81,7 +81,7 @@ def add_business(request):
     current_user = request.user
     if request.method == 'POST':
         form = BusinessForm(request.POST, request.FILES)
-        if form.is_valid():
+        if form.is_valid:
             business=form.save(commit=False)
             business.editor=current_user
             business.save()
@@ -89,4 +89,17 @@ def add_business(request):
     else:
         form=BusinessForm()
     return render(request,'postbusiness.html',{"form":form})
-        
+
+@login_required(login_url='/accounts/login/')
+def createprofile(request):
+    current_user=request.user
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST,request.FILES)
+        if form.is_valid():
+            profile=form.save(commit=False)
+            profile.editor=current_user
+            profile.save()
+        return redirect('home')
+    else:
+        form=UserProfileForm()
+    return render(request,'postprofile.html',{"form":form})
