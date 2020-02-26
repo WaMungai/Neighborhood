@@ -10,7 +10,7 @@ def home(request):
     news=News.objects.all()
     business=Business.objects.all()
     profile=UserProfile.objects.all()
-    hood=Neighborhood.get_hoodW()
+    hood=Neighborhood.get_hood()
     return render(request,'home.html',{"news":news,"business":business,"profile":profile,"hood":hood})
 
 @login_required(login_url='/accounts/login')
