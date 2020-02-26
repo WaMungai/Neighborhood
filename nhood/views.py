@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import News,Neighborhood,Business,UserProfile
 from django.contrib import messages
+from .forms import NewsForm,UserProfileForm,BusinessForm
+
 # Create your views here.
 def home(request):
     return HttpResponse('News from your neighbourly neighborhood')
@@ -61,7 +63,16 @@ def single_profile(request,userid):
     return render(request,'profile.html',{"profile":profile}) 
 
 @login_required(login_url='/accounts/login/')
-def createprofile(request):
-    current_user=request.user 
-    if request.method =='POST':
-        form= UserProfileForm           
+def add_news(request):
+    current_user=request.user
+    if request.method == 'POST':
+        form = NewsForm(request.POST, request.files)
+        if form.is_valid:
+            news=form.save(commit=False)
+            news.editor=current_user
+            news.save()
+        return redirect('home')
+    else:
+        form=NewsForm()
+    return render(request,'postnews.html',{"form":form})
+            
