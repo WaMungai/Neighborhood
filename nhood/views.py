@@ -7,7 +7,11 @@ from .forms import NewsForm,UserProfileForm,BusinessForm
 
 # Create your views here.
 def home(request):
-    return HttpResponse('News from your neighbourly neighborhood')
+    news=News.objects.all()
+    business=Business.objects.all()
+    profile=UserProfile.objects.all()
+    hood=Neighborhood.get_hoodW()
+    return render(request,'home.html',{"news":news,"business":business,"profile":profile,"hood":hood})
 
 @login_required(login_url='/accounts/login')
 def search_business(request):
