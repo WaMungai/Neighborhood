@@ -11,6 +11,8 @@ urlpatterns=[
     url(r'news/(\d+)', views.single_news,name="singlenews"),
     url(r'profile/(?P<userid>\d+)',views.single_profile,name='singleprofile'),
     url(r'create/profile$', views.createprofile,name='createprofile'),
+    url(r'add/news$',views.add_news,name='addnews'),
+    url(r'add/business$',views.add_business,name='addbusiness'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
