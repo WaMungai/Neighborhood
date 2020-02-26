@@ -1,5 +1,5 @@
 from django import forms
-from .models import UserProfile,News
+from .models import UserProfile,News, Business
 
 class NewsForm(forms.ModelForm):
     class Meta:
@@ -15,4 +15,12 @@ class UserProfileForm(forms.ModelForm):
         exclude = ['editor']
         widgets={
             'tags': forms.CheckboxSelectMultiple,
+        }
+        
+class BussinesForm(forms.ModelForm):
+    class Meta:
+        model = Business
+        exclude = ['editor', 'area']
+        widgets={
+            'tags':forms.CheckboxSelectMultiple,
         }
