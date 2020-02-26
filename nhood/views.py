@@ -75,4 +75,18 @@ def add_news(request):
     else:
         form=NewsForm()
     return render(request,'postnews.html',{"form":form})
-            
+
+@login_required(login_url='/accounts/login/')
+def add_business(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = BusinessForm(request.POST, request.FILES)
+        if form.is_valid():
+            business=form.save(commit=False)
+            business.editor=current_user
+            business.save()
+        return redirect('home')
+    else:
+        form=BusinessForm()
+    return render(request,'postbusiness.html',{"form":form})
+        
